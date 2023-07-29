@@ -1,0 +1,48 @@
+@import '../global.scss';
+
+.list-item {
+   position: relative;
+   padding: 2em 1em;
+   border-radius: 8px;
+
+   &:hover {
+      background-color: $neutral-gray2;
+   }
+
+   .item-task {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 0.7em;
+
+      .icon {
+         max-width: 70px;
+         width: 100%;
+      }
+
+      .task-details {
+         color: $neutral-gray1;
+
+         .title {
+            font-size: clamp(1rem, 1rem + 1vw, 1.5rem);
+         }
+
+         p.time {
+            font-size: clamp(0.5rem, 0.5rem + 1vw, 1rem);
+         }
+      }
+
+      .task-time {
+         position: absolute;
+         top: 0.5em;
+         right: 0.5em;
+         display: flex;
+         align-items: center;
+         color: $neutral-gray1;
+
+         .number-time {
+            margin-left: 0.25em;
+         }
+      }
+   }
+}

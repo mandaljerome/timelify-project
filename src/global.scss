@@ -1,0 +1,25 @@
+// Global Variables
+
+$primary: #39bbd2;
+$neutral-white: #fff;
+$neutral-black: #000;
+$neutral-gray1: #939393;
+$neutral-gray2: #f3f3f3;
+
+// Global Mixins
+
+@mixin inputText {
+   background-color: $neutral-gray2;
+   height: 48px;
+   border: none;
+   border-radius: 4px;
+   font-size: 1rem;
+   color: $neutral-gray1;
+   padding: 0 1rem;
+   cursor: pointer;
+}
+
+@mixin buttonHover {
+   transform: scale(102%);
+   opacity: 0.8;
+}

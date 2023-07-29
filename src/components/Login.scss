@@ -1,0 +1,143 @@
+@import '../global.scss';
+
+.login {
+   height: 100vh;
+
+   .container {
+      .login-section {
+         height: 100vh;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: space-around;
+
+         .logo {
+            max-width: 240px;
+         }
+
+         .error {
+            border: 2px solid red;
+            padding: 0.7em;
+            border-radius: 4px;
+            color: red;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+
+            img {
+               width: 1rem;
+               margin-right: 0.8em;
+            }
+         }
+
+         form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            h3 {
+               font-weight: 400;
+               font-size: 1.5rem;
+            }
+
+            input {
+               @include inputText;
+            }
+
+            .username::placeholder {
+               background-image: url('../assets/user.svg');
+               background-repeat: no-repeat;
+               padding-left: 1.5rem;
+               background-position: left center;
+               background-size: 1rem;
+            }
+
+            .password::placeholder {
+               background-image: url('../assets/lock.svg');
+               background-repeat: no-repeat;
+               padding-left: 1.5rem;
+               background-position: left center;
+               background-size: 1rem;
+            }
+
+            .submit-section {
+               .login-button {
+                  padding: 12px 46px;
+                  border-radius: 4px;
+                  border: none;
+                  background-color: $primary;
+                  color: $neutral-white;
+                  cursor: pointer;
+
+                  &:hover {
+                     @include buttonHover;
+                  }
+               }
+
+               a {
+                  text-decoration: none;
+                  color: $neutral-gray1;
+                  margin-left: 1rem;
+                  font-size: 0.75rem;
+               }
+            }
+
+            a.register {
+               text-decoration: none;
+               color: $neutral-gray1;
+               font-size: 0.75rem;
+               color: $primary;
+               cursor: pointer;
+            }
+         }
+
+         .login-footer {
+            p {
+               font-size: 0.7rem;
+               color: $neutral-gray1;
+            }
+
+            .footer-icons {
+               margin-top: 1rem;
+               display: flex;
+               gap: 1rem;
+               font-size: 0.7rem;
+               color: $primary;
+            }
+         }
+      }
+
+      .login-isometric {
+         display: none;
+      }
+   }
+}
+
+@media (min-width: 821px) {
+   .login {
+      .container {
+         height: 100%;
+         display: flex;
+         flex-direction: row-reverse;
+         align-items: center;
+         gap: 4rem;
+
+         .login-section {
+            height: unset;
+            width: 500px;
+            align-items: flex-start;
+            gap: 5rem;
+         }
+
+         .login-isometric {
+            display: block;
+
+            img {
+               max-width: 100%;
+               padding: 2rem;
+            }
+         }
+      }
+   }
+}

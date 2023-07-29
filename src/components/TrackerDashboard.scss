@@ -1,0 +1,54 @@
+@import '../global.scss';
+
+.tracker-dashboard {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   background: linear-gradient(136deg, #11a7eb 0%, #00d7f5 100%);
+   padding: 2em 0;
+
+   .component-control {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1.5em;
+
+      .tracker {
+         width: 100%;
+         max-width: 450px;
+      }
+
+      .track-list {
+         margin-top: 1.5rem;
+         width: 100%;
+         max-width: 450px;
+      }
+   }
+}
+
+@media (min-width: 767px) {
+   .tracker-dashboard {
+      height: 100vh;
+
+      .component-control {
+         display: flex;
+         flex-direction: row-reverse;
+         justify-content: center;
+         align-items: stretch;
+         gap: 1em;
+
+         .tracker {
+            max-width: 320px;
+         }
+
+         .track-list {
+            margin-top: unset;
+            max-width: 100%;
+            flex: 1;
+         }
+      }
+   }
+}
