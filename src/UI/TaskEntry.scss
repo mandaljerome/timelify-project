@@ -1,0 +1,138 @@
+@import '../global.scss';
+
+.task-entry {
+   .backdrop {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: $neutral-black;
+      opacity: 0.6;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      z-index: 6;
+   }
+
+   .register-form {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $neutral-white;
+      padding: 3.5em 2em;
+      border-radius: 1rem;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.2);
+      z-index: 6;
+
+      form {
+         display: flex;
+         flex-direction: column;
+
+         .header {
+            font-size: 2rem;
+         }
+
+         .subtitle {
+            margin: 0.5em 0 1em;
+         }
+
+         .success {
+            border: 2px solid green;
+            padding: 0.7em;
+            border-radius: 4px;
+            color: green;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+
+            img {
+               width: 1rem;
+               margin-right: 0.8em;
+            }
+         }
+
+         .dropdown {
+            @include inputText;
+            padding-left: 0.75em;
+            color: $neutral-gray1;
+
+            &:focus {
+               outline-color: $primary;
+            }
+         }
+
+         .success {
+            border: 2px solid green;
+            padding: 0.7em;
+            border-radius: 4px;
+            color: green;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+
+            img {
+               width: 1rem;
+               margin-right: 0.8em;
+            }
+         }
+
+         span {
+            font-size: 0.75rem;
+            color: $neutral-gray1;
+            padding: 0.75em 0 0.3em 0.3em;
+         }
+
+         .description {
+            width: 100%;
+            @include inputText;
+            height: 150px;
+            font-family: 'Inter';
+            resize: none;
+            padding-top: 1em;
+            padding-bottom: 1em;
+         }
+
+         @media (max-width: 400px) {
+            .description {
+               height: 48px;
+            }
+         }
+
+         input {
+            @include inputText;
+            font-family: 'Inter';
+         }
+         .button-control {
+            margin-top: 2em;
+            button {
+               padding: 1em 0;
+               border-radius: 4px;
+               border: none;
+               color: $neutral-white;
+               display: block;
+               width: 100%;
+            }
+
+            .submit {
+               background-color: $primary;
+
+               &:hover {
+                  @include buttonHover;
+               }
+            }
+
+            .cancel {
+               background-color: $neutral-gray1;
+               margin-top: 1em;
+
+               &:hover {
+                  transform: scale(102%);
+                  opacity: 0.8;
+               }
+            }
+         }
+      }
+   }
+}

@@ -13,6 +13,10 @@ body {
    font-size: 1rem;
 }
 
+.no-scroll {
+   overflow: hidden;
+}
+
 .container {
    margin: 0 auto;
    max-width: 1366px;
