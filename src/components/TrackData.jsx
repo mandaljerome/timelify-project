@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { timeFormatter, pastSevenDays } from '../helper/time'
 import ListItem from './ListItem'
@@ -18,32 +18,40 @@ const TrackData = () => {
 
    let filterArray = []
 
+   //To get the total time in the filter
+   const getTotalSec = () => {
+      const total = filterArray.reduce((oldValue, newValue) => {
+         return oldValue + newValue.numberSeconds
+      }, 0)
+      dispatch(filterAction.totalTimeHandler(total))
+   }
+
    // This filter the data thats enter in the List Item Component
 
+   // To filter all the task data
    if (filteredData === 'all') {
-      if (filteredData) dispatch(filterAction.filterSearchDeactivated())
       filterArray = data
+      getTotalSec()
    }
 
+   //To filter the data inputed today.
    if (filteredData === 'today') {
-      if (filteredData) dispatch(filterAction.filterSearchDeactivated())
-
       filterArray = data.filter((item) => {
          return item.date === date.fullDate
       })
+      getTotalSec()
    }
 
-   if (filteredData === 'search') {
-      dispatch(filterAction.filterSearchActivated())
-   }
-
-   if (filteredData === 'lastSeven') {
+   //To filter the date last seven days ago
+   if (filteredData === 'sevenDays') {
+      const currentDate = new window.Date()
       filterArray = data.filter((item) => {
-         const convertedDataDate = new Date(item.date)
-         const convertedCurrentDate = new Date(date.fullDate)
-
-         return item.date === date.fullDate
+         const date = item.date
+         const diffInTime = currentDate - new Date(date)
+         const diffInDays = diffInTime / (1000 * 3600 * 24)
+         return diffInDays <= 7
       })
+      getTotalSec()
    }
 
    return (

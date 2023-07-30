@@ -19,13 +19,7 @@ export const regOverlay = createSlice({
 })
 
 // User Data
-const accountState = [
-   {
-      name: 'Jerome Mandal',
-      username: 'admin',
-      password: 'admin',
-   },
-]
+const accountState = JSON.parse(localStorage.getItem('user')) || []
 
 export const account = createSlice({
    name: 'users',
@@ -33,6 +27,8 @@ export const account = createSlice({
    reducers: {
       newUser: (state, action) => {
          state.push(action.payload)
+
+         localStorage.setItem('user', JSON.stringify(state))
       },
    },
 })

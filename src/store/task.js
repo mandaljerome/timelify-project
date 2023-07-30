@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export let filterDate = []
 
+// this store if for showing the entry modal
 const entryModalState = {
    showModal: false,
 }
@@ -19,17 +20,27 @@ export const entryModal = createSlice({
    },
 })
 
-const taskState = [
-   {
-      id: 1,
-      title: 'Front-End Task',
-      description: 'Created a log in for to the home page',
-      numberSeconds: 3600,
-      date: '2023-07-23',
-      time: '4:00pm',
-      icon: 2,
+// for triggering the filter data
+const filterState = {
+   filterData: 'all',
+   totalSec: 0,
+}
+
+export const filter = createSlice({
+   name: 'filter',
+   initialState: filterState,
+   reducers: {
+      filterHandler: (state, action) => {
+         state.filterData = action.payload
+      },
+      totalTimeHandler: (state, action) => {
+         state.totalSec = action.payload
+      },
    },
-]
+})
+
+// this handle the data from the task
+const taskState = JSON.parse(localStorage.getItem('data')) || []
 
 export const task = createSlice({
    name: 'task',
@@ -74,28 +85,8 @@ export const task = createSlice({
                   : action.payload.time,
             icon: icon,
          })
-      },
-   },
-})
 
-const filterState = {
-   filterData: 'all',
-   searchActivate: false,
-}
-
-export const filter = createSlice({
-   name: 'filter',
-   initialState: filterState,
-   reducers: {
-      filterHandler: (state, action) => {
-         console.log(action.payload)
-         state.filterData = action.payload
-      },
-      filterSearchActivated: (state, action) => {
-         state.searchActivate = true
-      },
-      filterSearchDeactivated: (state, action) => {
-         state.searchActivate = false
+         localStorage.setItem('data', JSON.stringify(state))
       },
    },
 })

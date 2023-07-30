@@ -7,9 +7,16 @@ const ListFilter = () => {
    const startRef = useRef()
    const endRef = useRef()
    const dispatch = useDispatch()
+   const totalTime = useSelector((state) => state.filter.totalSec)
    const activateSearchFilter = useSelector(
       (state) => state.filter.searchActivate
    )
+
+   //Time Formatter for the total time
+   const hours = Math.floor(totalTime / 3600)
+   const remainingSecondsAfterHours = totalTime % 3600
+   const minutes = Math.floor(remainingSecondsAfterHours / 60)
+   const seconds = remainingSecondsAfterHours % 60
 
    // This set the filter data in the item list
    const searchFilterHandler = (e) => {
@@ -38,11 +45,13 @@ const ListFilter = () => {
             >
                <option value='all'>All</option>
                <option value='today'>Today</option>
-               <option value='search'>Search Date</option>
+               <option value='sevenDays'>Last 7 Days</option>
             </select>
             <div className='total-hours'>
                <p>Total Hours</p>
-               <h3>3h 2m 0s</h3>
+               <h3>
+                  {hours}h {minutes}m {seconds}s
+               </h3>
             </div>
 
             {activateSearchFilter && (

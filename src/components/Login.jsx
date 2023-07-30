@@ -37,6 +37,7 @@ const Login = () => {
 
       if (login) {
          dispatch(authAction.login())
+         dispatch(authAction.removeError())
       } else {
          dispatch(authAction.error())
       }

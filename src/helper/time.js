@@ -43,5 +43,5 @@ export const pastSevenDays = () => {
       monthNumeric,
       0
    )
-   return lastDayOfCurrentMonth.getDate()
+   const numberOfMonth = lastDayOfCurrentMonth.getDate()
 }

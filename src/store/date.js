@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// This is just a formatter in the header of the tracker
+// to display the live clock
+
 const daysOfWeek = [
    'Sunday',
    'Monday',

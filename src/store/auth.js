@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// the simple authentication from the login page to the dashboard
+
 const authState = {
    authLogin: false,
    authError: false,
@@ -17,6 +19,9 @@ export const auth = createSlice({
       },
       error: (state) => {
          state.authError = true
+      },
+      removeError: (state) => {
+         state.authError = false
       },
    },
 })
