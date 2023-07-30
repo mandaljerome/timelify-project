@@ -1,25 +1,27 @@
 How to run the app:
 
-First register an acoount to the login page.
-It's only a simple registration form withour auth.
+First, register an account on the login page.
+It's only a simple registration form without auth.
 
-Once register login the user created.
+Once registered login the user is created.
 
 To track time:
 
 Select the task in the dropdown.
 Put task description of the project.
 
-Then just click the big play button to track manually.
+Then click the big play button to track manually.
 
-You can pause the tracker by pressing the pause button
+You can pause the tracker by pressing the pause button.
 
-Once done on the task just simply click the stop button
-and it will automaticall record the data.
+Once done with the task, click the stop button
+and it will automatically record the data.
 
 To manually insert entry:
 
-Click the + icon on the top of the timer and fill the form to add manual entry.
+Click the + icon on the top of the timer and fill out the form to add a manual entry.
+
+
 
 To clone the project:
 
