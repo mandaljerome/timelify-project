@@ -32,16 +32,53 @@
          }
       }
 
+      .task-description {
+         align-self: center;
+         color: $neutral-gray1;
+         margin-left: auto;
+         font-size: 0.7rem;
+
+         text-align: end;
+
+         p {
+            width: 180px;
+            word-wrap: break-word;
+         }
+      }
+
       .task-time {
          position: absolute;
          top: 0.5em;
-         right: 0.5em;
+         right: 0.9em;
          display: flex;
          align-items: center;
          color: $neutral-gray1;
 
          .number-time {
             margin-left: 0.25em;
+         }
+      }
+   }
+}
+
+@media (max-width: 987px) {
+   .list-item {
+      .item-task {
+         flex-direction: column;
+
+         .task-details {
+            text-align: center;
+         }
+
+         .task-description {
+            width: 100%;
+            text-align: center;
+
+            p {
+               margin: 0 auto;
+               width: 100%;
+               max-width: 400px;
+            }
          }
       }
    }

@@ -9,13 +9,14 @@ import icon4 from '../assets/icon4.svg'
 import icon5 from '../assets/icon5.svg'
 
 const ListItem = (props) => {
+   //Time calculation of the total time of all filtered data.
    const hours = Math.floor(props.numberSeconds / 3600)
    const remainingSecondsAfterHours = props.numberSeconds % 3600
    const minutes = Math.floor(remainingSecondsAfterHours / 60)
    const seconds = remainingSecondsAfterHours % 60
 
+   // For the icon purposes only.
    let icon
-
    if (props.icon === 1) {
       icon = <img src={icon1} alt='' className='icon' />
    }
@@ -42,6 +43,9 @@ const ListItem = (props) => {
                <p className='time'>
                   {props.date} | {props.time}
                </p>
+            </div>
+            <div className='task-description'>
+               <p>{props.description}</p>
             </div>
             <div className='task-time'>
                <img src={timeLogo} alt='' />
