@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Moment from 'react-moment'
+import { timeFormatter } from '../helper/time'
 
 import './Date.scss'
 import sunny from '../assets/sunny.png'
@@ -7,17 +8,17 @@ import sunny from '../assets/sunny.png'
 const Date = () => {
    const [currentTime, setCurrentTime] = useState(new window.Date())
 
-   //Time computations
-   const monthWord = currentTime.toLocaleString(undefined, { month: 'long' })
-   const dayOfMonth = currentTime.getDate()
-   const year = currentTime.getFullYear()
-   const minutes = currentTime.getMinutes()
-   const formattedMinutes = minutes.toString().padStart(2, '0')
-   const hours = currentTime.getHours() % 12 || 12
-   const meridiem = currentTime.getHours() < 12 ? 'AM' : 'PM'
-   const currentDay = currentTime.toLocaleString(undefined, { weekday: 'long' })
+   //Time computations function
+   const {
+      monthWord,
+      dayOfMonth,
+      year,
+      currentDay,
+      hours,
+      formattedMinutes,
+      meridiem,
+   } = timeFormatter(currentTime)
 
-   // console.log(currentTime)
    useEffect(() => {
       // Update the time every second (1000 milliseconds)
       const intervalId = setInterval(() => {

@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+export let filterDate = []
+
 const entryModalState = {
    showModal: false,
 }
@@ -34,12 +36,10 @@ export const task = createSlice({
    initialState: taskState,
    reducers: {
       addNewTask: (state, action) => {
-         console.log(action.payload)
-
-         const arrLength = state.length
          const minutesToSeconds = action.payload.minutes * 60
          const hourToSeconds = action.payload.hours * 60 * 60
          const totalSeconds = minutesToSeconds + hourToSeconds
+
          let icon
 
          // This statements are for logo placement only.
@@ -63,7 +63,10 @@ export const task = createSlice({
             id: Math.random(),
             title: action.payload.title,
             description: action.payload.description,
-            numberSeconds: totalSeconds,
+            numberSeconds:
+               action.payload.numberSeconds === undefined
+                  ? totalSeconds
+                  : action.payload.numberSeconds,
             date: action.payload.date,
             time:
                action.payload.time === undefined
@@ -75,5 +78,28 @@ export const task = createSlice({
    },
 })
 
+const filterState = {
+   filterData: 'all',
+   searchActivate: false,
+}
+
+export const filter = createSlice({
+   name: 'filter',
+   initialState: filterState,
+   reducers: {
+      filterHandler: (state, action) => {
+         console.log(action.payload)
+         state.filterData = action.payload
+      },
+      filterSearchActivated: (state, action) => {
+         state.searchActivate = true
+      },
+      filterSearchDeactivated: (state, action) => {
+         state.searchActivate = false
+      },
+   },
+})
+
 export const taskAction = task.actions
 export const entryModalAction = entryModal.actions
+export const filterAction = filter.actions

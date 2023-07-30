@@ -10,6 +10,7 @@ import play from '../assets/play.png'
 import pause from '../assets/pause.png'
 import stop from '../assets/stop.svg'
 import add from '../assets/add.svg'
+import error from '../assets/error.svg'
 
 const Counter = () => {
    const dispatch = useDispatch()
@@ -21,6 +22,7 @@ const Counter = () => {
    const [intervalId, setIntervalId] = useState(0) // this is to set a new ID to the interval so I can pause it using different function
    const [isRunning, setIsRunning] = useState(false)
    const [disableText, setDisableText] = useState(false)
+   const [errorAuth, setErrorAuth] = useState(false)
 
    // time calculaion
    const hours = Math.floor(elapsedTime / 3600)
@@ -36,8 +38,15 @@ const Counter = () => {
 
    //This is to start the timer
    const startTimerHandler = () => {
+      if ((titleRef.current.value === '') & (descRef.current.value === '')) {
+         setErrorAuth(true)
+
+         return
+      }
+
       if (!isRunning) {
          setIsRunning(true)
+         setErrorAuth(false)
          const intervalId = setInterval(() => {
             setElapsedTime((prevElapsedTime) => prevElapsedTime + 1)
          }, 1000)
@@ -49,19 +58,13 @@ const Counter = () => {
 
    //This is to pause the timer
    const pauseTimerHandler = () => {
-      console.log(titleRef.current.value)
       clearInterval(intervalId)
       setIsRunning(false)
    }
 
    // To stop the timer and submit data.
    const stopTimerHandler = () => {
-      // const date = new window.Date()
-      // const time = `${date.getHours() % 12 || 12}:${date
-      //    .getMinutes()
-      //    .toString()
-      //    .padStart(2, '0')} ${date.getHours() < 12 ? 'AM' : 'PM'}`
-
+      // this is the time formatter a helper function
       const time = timeFormatter()
 
       dispatch(
@@ -74,19 +77,13 @@ const Counter = () => {
          })
       )
 
-      // dispatch(
-      //    taskAction.addNewTask({
-      //       title: titleRef.current.value,
-      //       description: descRef.current.value,
-      //       numberSeconds: elapsedTime,
-      //       date: date.getDate(),
-      //       time,
-      //    })
-      // )
       setIsRunning(false)
       clearInterval(intervalId)
       setElapsedTime(0)
       setDisableText(false)
+
+      titleRef.current.value = ''
+      descRef.current.value = ''
    }
 
    return (
@@ -107,6 +104,12 @@ const Counter = () => {
                <p>sec</p>
             </div>
          </div>
+         {errorAuth && (
+            <div className='error'>
+               <img src={error} alt='' />
+               <p>Please fill the task details!</p>
+            </div>
+         )}
          <select
             id='dropdown'
             className='dropdown'
@@ -114,6 +117,7 @@ const Counter = () => {
             ref={titleRef}
             disabled={disableText}
          >
+            <option value=''>Select a Task</option>
             <option value='Front-End Task'>Front-End Task</option>
             <option value='Back-End Task'>Back-End Task</option>
             <option value='UI/UX Design Task'>UI/UX Task</option>
@@ -128,6 +132,7 @@ const Counter = () => {
             style={disableText ? { opacity: 0.6 } : {}}
             ref={descRef}
             disabled={disableText}
+            required
          ></textarea>
 
          <div className='buttons'>
@@ -148,12 +153,14 @@ const Counter = () => {
                   className='play big-button'
                />
             )}
-            <img
-               src={stop}
-               alt=''
-               onClick={stopTimerHandler}
-               className='stop'
-            />
+            {isRunning && (
+               <img
+                  src={stop}
+                  alt=''
+                  onClick={stopTimerHandler}
+                  className='stop'
+               />
+            )}
          </div>
       </div>
    )
